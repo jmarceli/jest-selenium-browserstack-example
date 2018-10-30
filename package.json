@@ -1,0 +1,49 @@
+{
+  "name": "jest-selenium-browserstack-example",
+  "version": "0.1.0",
+  "description": "How to use Jest with Selenium tests on BrowserStack",
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "browser": "lib/jest-selenium-browserstack-example.js",
+  "keywords": [
+    "javascript",
+    "selenium",
+    "browserstack",
+    "local",
+    "test",
+    "jest"
+  ],
+  "scripts": {
+    "clean": "rimraf lib",
+    "test:local": "jest test/local.test.js",
+    "test:manual": "jest test/manual.test.js",
+    "test:automate": "jest test/remote.test.js",
+    "lint": "eslint src",
+    "build": "rollup -c"
+  },
+  "author": "Jan Grzegorowski",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "browserstack-local": "^1.3.5",
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.25.1",
+    "eslint-plugin-prettier": "^3.0.0",
+    "jest": "^23.6.0",
+    "jsdom": "^12.2.0",
+    "prettier": "^1.14.3",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.66.2",
+    "rollup-plugin-babel": "3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "selenium-webdriver": "^4.0.0-alpha.1"
+  }
+}
