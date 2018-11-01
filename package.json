@@ -17,7 +17,7 @@
     "clean": "rimraf lib",
     "test:local": "jest test/local.test.js",
     "test:manual": "jest test/manual.test.js",
-    "test:automate": "jest test/remote.test.js",
+    "test:automate": "jest test/automate.test.js",
     "lint": "eslint src",
     "build": "rollup -c"
   },
