@@ -41,6 +41,23 @@ yarn test:automate
 
 And see tests automatically connecting and running on BrowserStack.
 
+### Parametrized tests
+
+To run tests against browser and OS specified as command execution arguments use:
+
+```bash
+BROWSER=chrome OS=Windows yarn test:parametrized
+```
+
+### Sequential tests
+
+Here is how you may run tests for multiple browsers in one call,
+adjust configuration in `./test/config.json` and run:
+
+```bash
+yarn test:sequential
+```
+
 ### Other scripts available
 
 ```bash
