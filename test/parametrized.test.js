@@ -11,8 +11,8 @@ const By = webdriver.By;
 const capabilities = {
   build: require('../package.json').version,
   project: 'jest-selenium-browserstack-example',
-  browserName: 'chrome',
-  os: 'Windows',
+  browserName: process.env.BROWSER, //'chrome',
+  os: process.env.OS, //'Windows',
   'browserstack.local': true,
   // 'browserstack.debug': true,
   'browserstack.user': 'YOUR_BROWSERSTACK_USERNAME',
