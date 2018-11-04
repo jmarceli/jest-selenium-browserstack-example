@@ -7,7 +7,7 @@ const getElementById = async (driver, id, timeout = 2000) => {
   return await driver.wait(until.elementIsVisible(el), timeout);
 };
 
-describe('webdriver', async () => {
+describe('webdriver', () => {
   let driver;
 
   beforeAll(async () => {
