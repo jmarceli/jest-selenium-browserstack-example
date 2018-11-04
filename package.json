@@ -18,7 +18,7 @@
     "test:local": "jest test/local.test.js",
     "test:manual": "jest test/manual.test.js",
     "test:automate": "jest test/automate.test.js",
-    "test:parametrized": "BROWSER=chrome OS=Windows jest test/parametrized.test.js",
+    "test:parametrized": "jest test/parametrized.test.js",
     "test:sequential": "jest test/sequential.test.js",
     "lint": "eslint src",
     "build": "rollup -c"
