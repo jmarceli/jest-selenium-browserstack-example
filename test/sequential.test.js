@@ -1,6 +1,13 @@
 import webdriver from 'selenium-webdriver';
+// it will download and use BrowserStackLocal binary file behind the scene
+// you may check ~/.browserstack dir
 import browserstack from 'browserstack-local';
-import hello from './sequential.single.test';
+
+const local = new browserstack.Local();
+const until = webdriver.until;
+const By = webdriver.By;
+
+const config = require('./config.json');
 
 // see: https://www.browserstack.com/local-testing#modifiers
 const BrowserStackLocalArgs = {
@@ -10,10 +17,6 @@ const BrowserStackLocalArgs = {
   // eslint-disable-next-line
   folder: __dirname,
 };
-
-const config = require('./config.json');
-
-const local = new browserstack.Local();
 
 const start = async () =>
   new Promise((resolve, reject) => {
@@ -36,6 +39,11 @@ const stop = async () =>
     });
   });
 
+const getElementById = async (driver, id, timeout = 5000) => {
+  const el = await driver.wait(until.elementLocated(By.id(id)), timeout);
+  return await driver.wait(until.elementIsVisible(el), timeout);
+};
+
 beforeAll(async () => {
   console.log('connect');
   try {
@@ -55,14 +63,16 @@ afterAll(async () => {
 for (const browser of config.browsers) {
   let driver;
   const capabilities = {
-    ...browser,
+    os: 'Windows',
     // build: require('../package.json').version,
-    build: '0.1.0', //require('../package.json').version,
+    build: require('../package.json').version,
     project: 'jest-selenium-browserstack-example',
     // browserName: 'chrome',
-    os: 'Windows',
     'browserstack.local': true,
+    'browserstack.user': 'YOUR_BROWSERSTACK_USERNAME',
+    'browserstack.key': BrowserStackLocalArgs.key,
     // 'browserstack.debug': true,
+    ...browser,
   };
 
   describe(
@@ -84,7 +94,18 @@ for (const browser of config.browsers) {
       describe(`desc ${capabilities.browserName}`, () => {
         test(`test ${capabilities.browserName}`, async () => {
           console.log('tests start');
-          await hello(driver, capabilities);
+          await driver.get(
+            `http://${
+              capabilities['browserstack.user']
+            }.browserstack.com/test.html`,
+          );
+          const btn = await getElementById(driver, 'test-button');
+          await btn.click();
+
+          const output = await getElementById(driver, 'output');
+          const outputVal = await output.getAttribute('value');
+
+          expect(outputVal).toEqual('Something');
           console.log('tests end');
         });
       });
